@@ -1,37 +1,36 @@
 # Java Hello World Docker Guide
 
 ## 1. Create `HelloWorld.java`
-This is a simple Java program that will print "Hello, World!".
-
+Asimple Java program that will print "Hello, World!".
 ```java
-// HelloWorld.java
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
 }
+```
+
+## 1.2 Create `manifest.mf`
+The manifest file contains information about the Java program.
+```manifest
+Manifest-Version: 1.0
+Main-Class: HelloWorld
+```
+
 
 
 ## 2. Create `Dockerfile`
 The Dockerfile will compile and run the Java program.
-
 ```dockerfile
-# Dockerfile
-# Use the OpenJDK 17 image
-FROM openjdk:17-jdk-slim
-
-# Set working directory in container
-WORKDIR /app
-
-# Copy HelloWorld.java to /app
-COPY HelloWorld.java .
-
-# Compile HelloWorld.java
+FROM openjdk
+WORKDIR /
+COPY HelloWorld.java HelloWorld.java
+COPY manifest.mf manifest.mf
 RUN javac HelloWorld.java
-
-# Set the default command to run the Java program
-CMD ["java", "HelloWorld"]
+RUN jar -cfmv HelloWorld.jar manifest.mf HelloWorld.class
+CMD ["java", "-jar", "HelloWorld.jar"] 
 ```
+
 
 ## 3. Build the Docker Image
 Run the following command to build the Docker image. The `-t` flag assigns a tag to the image.
