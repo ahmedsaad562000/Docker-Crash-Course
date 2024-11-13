@@ -22,13 +22,28 @@ Main-Class: HelloWorld
 ## 2. Create `Dockerfile`
 The Dockerfile will compile and run the Java program.
 ```dockerfile
+# Use the official OpenJDK base image
 FROM openjdk
+
+# Set the working directory to the root
 WORKDIR /
+
+# Copy HelloWorld.java into the root directory of the container
 COPY HelloWorld.java HelloWorld.java
+
+# Copy the manifest file into the root directory of the container
 COPY manifest.mf manifest.mf
+
+# Compile HelloWorld.java to create HelloWorld.class
 RUN javac HelloWorld.java
+
+# Package HelloWorld.class into a JAR file named HelloWorld.jar, 
+# with manifest.mf specifying metadata like the main class
 RUN jar -cfmv HelloWorld.jar manifest.mf HelloWorld.class
-CMD ["java", "-jar", "HelloWorld.jar"] 
+
+# Run the JAR file using the Java command
+CMD ["java", "-jar", "HelloWorld.jar"]
+
 ```
 
 
