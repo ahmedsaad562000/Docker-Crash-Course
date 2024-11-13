@@ -1,0 +1,7 @@
+FROM openjdk
+WORKDIR /
+COPY HelloWorld.java HelloWorld.java
+COPY manifest.mf manifest.mf
+RUN javac HelloWorld.java
+RUN jar -cfmv HelloWorld.jar manifest.mf HelloWorld.class
+CMD ["java", "-jar", "HelloWorld.jar"] 
