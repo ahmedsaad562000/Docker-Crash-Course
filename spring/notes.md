@@ -10,7 +10,7 @@
    sudo apt install maven
    ```
 
-3. **Build and Package the Project**  
+3. **Build and Package the Project (make sure you are using java 13 or downgrade the project version from pom.xml)**  
    - Clean the project:  
      ```bash
      mvn clean
