@@ -1,4 +1,3 @@
-```markdown
 # MySQL Docker Hub Documentation Notes 🐳
 
 ## 1️⃣ Running a MySQL Container
