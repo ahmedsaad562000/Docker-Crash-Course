@@ -1,0 +1,23 @@
+include:
+  - mysql.yaml
+services:
+  app:
+    image: danielpm1982/meeting-app:v.2.0.0
+    container_name: meet_cont
+    ports:
+      - 8080:8080
+    environment:
+      MYSQL_PORT_3306_TCP_ADDR: mysql_cont
+      MYSQL_PORT_3306_TCP_PORT: 3306
+      MYSQL_ENV_MYSQL_DATABASE: meet_db
+      MYSQL_ENV_MYSQL_USER: ahmedsaad
+      MYSQL_ENV_MYSQL_PASSWORD: ahmedsaad
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /code
+    depends_on:
+      mysql:
+        condition: service_healthy
+

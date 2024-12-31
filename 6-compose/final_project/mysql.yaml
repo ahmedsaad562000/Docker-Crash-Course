@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_cont
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: meet_db
+      MYSQL_USER: ahmedsaad
+      MYSQL_PASSWORD: ahmedsaad
+    healthcheck:
+      test: ["CMD-SHELL", 'mysqladmin ping']
+      interval: 10s
+      timeout: 2s
+      retries: 10  
