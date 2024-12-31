@@ -1,4 +1,4 @@
-```markdown
+
 # Exploring Bridge and User-Defined Networks in Docker
 
 This guide demonstrates the differences between Docker's default `bridge` network and user-defined networks. The commands and explanations below will help you understand how networking works in Docker.
